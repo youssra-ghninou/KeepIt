@@ -1,19 +1,10 @@
-import { StyleSheet, View } from 'react-native'
-import Intro from './app/screens/Intro'
+import Layout from './app/components/Layout'
+import { AuthProvider } from './app/context/AuthContext'
 
 export default function App() {
   return (
-    <View className='bg-red-600'>
-      <Intro />
-    </View>
+    <AuthProvider>
+      <Layout />
+    </AuthProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
