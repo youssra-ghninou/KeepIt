@@ -1,10 +1,13 @@
-import { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Pressable, Text, TextInput, View } from 'react-native'
 import tailwind from 'twrnc'
 import { AuthContext } from '../context/AuthContext'
 
 export default function LoginScreen() {
-  const { login } = useContext(AuthContext)
+  const { login, logout } = useContext(AuthContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <>
       <View style={tailwind`flex-1 items-center justify-center bg-slate-50`}>
@@ -20,11 +23,15 @@ export default function LoginScreen() {
             style={tailwind`w-full bg-white border border-slate-200 rounded-md h-12 px-4 mb-4`}
             placeholderTextColor='#000'
             placeholder='Enter email address'
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <TextInput
             style={tailwind`w-full bg-white border border-slate-200 rounded-md h-12 px-4`}
             placeholderTextColor='#000'
             placeholder='Enter password'
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
           <View
             style={tailwind`flex flex-row justify-between items-center my-8`}
@@ -56,6 +63,17 @@ export default function LoginScreen() {
                 }}
               >
                 Login
+              </Text>
+            </View>
+            <View style={tailwind`flex-1 flex items-center`}>
+              <Text
+                style={tailwind`text-white text-base font-medium`}
+                label={'login'}
+                onPress={() => {
+                  logout()
+                }}
+              >
+                Register
               </Text>
             </View>
           </Pressable>
