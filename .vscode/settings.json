@@ -1,0 +1,46 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.format": true
+  },
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "files.encoding": "utf8",
+  "cSpell.language": "en,lorem",
+  "cSpell.enableFiletypes": ["dotenv", "log", "tailwindcss"],
+  "cSpell.words": [
+    "allroadmaps",
+    "commitlint",
+    "ENIMISTE",
+    "ENSMR",
+    "googleusercontent",
+    "haspopup",
+    "nextauth",
+    "offerid",
+    "offersid",
+    "offre",
+    "tailwindcss"
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorCustomizations": {
+    "[*Dark*]": {
+      "progressBar.background": "#0D9373",
+      "notificationsInfoIcon.foreground": "#0D9373",
+      "editor.selectionBackground": "#0D937333"
+    },
+    "[*Light*]": {
+      "progressBar.background": "#0D9373",
+      "notificationsInfoIcon.foreground": "#0D9373",
+      "editor.selectionBackground": "#0D937333"
+    }
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
+}
