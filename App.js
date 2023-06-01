@@ -1,6 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
+import CreateNote from './app/components/CreateNote'
 import LoggedIn from './app/components/LoggedIn'
 import Login from './app/components/Login'
 import Signup from './app/components/Signup'
@@ -24,7 +25,13 @@ export default function App() {
   }, [])
 
   const getScreen = () => {
-    if (loggedIn) return <LoggedIn />
+    if (loggedIn)
+      return (
+        <>
+          <LoggedIn />
+          <CreateNote />
+        </>
+      )
     if (screen === 'signup') return <Signup setScreen={setScreen} />
     return <Login setScreen={setScreen} />
   }
