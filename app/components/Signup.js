@@ -22,8 +22,17 @@ export default function Signup({ setScreen }) {
       } else {
         setError("Passwords don't match")
       }
-    } catch (e) {
-      setError('There was a problem creating your account')
+    } catch (error) {
+      console.error('Error creating account:', error)
+      if (error.code === 'auth/email-already-in-use') {
+        setError(
+          'The email address is already in use. Please use a different email.',
+        )
+      } else {
+        setError(
+          'An unexpected error occurred while creating your account. Please try again.',
+        )
+      }
     }
   }
 

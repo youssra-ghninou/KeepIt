@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { auth } from '../../firebase' // Import the auth object from firebase
 
 export default function Login({ setScreen }) {
   const [email, setEmail] = useState('')
@@ -18,11 +19,10 @@ export default function Login({ setScreen }) {
     try {
       await signInWithEmailAndPassword(auth, email, password)
     } catch (error) {
-      if (
-        error.code === 'auth/invalid-email' ||
-        error.code === 'auth/wrong-password'
-      ) {
-        setError('Your email or password was incorrect')
+      if (error.code === 'auth/invalid-email') {
+        setError('Invalid email address')
+      } else if (error.code === 'auth/wrong-password') {
+        setError('Incorrect password')
       } else if (error.code === 'auth/email-already-in-use') {
         setError('An account with this email already exists')
       } else {
@@ -34,6 +34,8 @@ export default function Login({ setScreen }) {
     <View style={styles.outer}>
       <View style={styles.inner}>
         <Text style={styles.header}>Login</Text>
+        {error && <Text style={styles.error}>{error}</Text>}
+
         <TouchableOpacity onPress={() => setScreen('signup')}>
           <Text style={styles.link}>Create an account</Text>
         </TouchableOpacity>
@@ -69,5 +71,9 @@ const styles = StyleSheet.create({
   link: {
     color: 'blue',
     marginBottom: 20,
+  },
+  error: {
+    marginBottom: 20,
+    color: 'red',
   },
 })

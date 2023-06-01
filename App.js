@@ -12,27 +12,22 @@ export default function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log('Auth state changed:', user)
       if (user) {
-        console.log('User is logged in')
         setLoggedIn(true)
       } else {
-        console.log('User is not logged in')
         setLoggedIn(false)
       }
     })
 
     // Clean up the listener when component unmounts
     return () => unsubscribe()
-  }, []) // Empty dependency array ensures the effect runs only once
+  }, [])
 
   const getScreen = () => {
-    console.log('Getting screen:', loggedIn, screen)
     if (loggedIn) return <LoggedIn />
     if (screen === 'signup') return <Signup setScreen={setScreen} />
     return <Login setScreen={setScreen} />
   }
 
-  console.log('Rendering app')
   return <View style={{ flex: 1 }}>{getScreen()}</View>
 }
