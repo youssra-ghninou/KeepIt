@@ -1,35 +1,47 @@
 import { addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
+import { firestore } from '../../firebase'
+
 import {
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native'
-import { db } from '../../firebase'
 
-export default function CreateNote(props) {
-  const [Notes, setNotes] = useState('')
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (Notes !== '') {
-      await addDoc(collection(db, 'notes'), {
-        Notes,
-        completed: false,
+export default function CreateNote() {
+  const [title, setTitle] = useState('')
+  const [note, setNote] = useState('')
+  const handleAdd = async () => {
+    try {
+      const docRef = await addDoc(collection(firestore, 'notes'), {
+        title,
+        note,
       })
-      setNotes('')
+      setTitle('')
+      setNote('')
+      Keyboard.dismiss()
+    } catch (error) {
+      alert(error)
     }
   }
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder='What do you want to do?'
-        value={Notes}
-        onChangeText={setNotes}
+        placeholder='Title'
+        value={title}
+        onChangeText={(text) => setTitle(text)}
       />
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+      <TextInput
+        style={styles.input}
+        placeholder='note'
+        value={note}
+        onChangeText={(text) => setNote(text)}
+      />
+      <TouchableOpacity style={styles.button} onPress={handleAdd}>
         <Text style={styles.buttonText}>Create Note</Text>
       </TouchableOpacity>
     </View>

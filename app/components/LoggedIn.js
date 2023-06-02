@@ -1,7 +1,9 @@
 import { signOut } from 'firebase/auth'
 import React from 'react'
-import { Button, Text, View } from 'react-native'
+import { Button, View } from 'react-native'
 import { auth } from '../../firebase'
+import CreateNote from './CreateNote'
+import Home from './Home'
 
 export default function LoggedIn() {
   const logout = async () => {
@@ -14,7 +16,8 @@ export default function LoggedIn() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Logged in</Text>
+      <Home />
+      <CreateNote />
       <Button title='Log out' onPress={logout} />
     </View>
   )

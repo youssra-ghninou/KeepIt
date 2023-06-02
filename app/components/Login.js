@@ -39,12 +39,24 @@ export default function Login({ setScreen }) {
         source={require('../../assets/note-icon.png')}
         style={tailwind`w-40 h-40 self-center`}
       />
-      <Text style={tailwind`font-thin text-xl`}>NOTE-IT</Text>
-      <Text style={tailwind`font-thin text-xl `}>Stay Centered</Text>
+      <Text
+        style={tailwind`w-[54px] height-[13px] left-[190px] top-[361px] font-normal text-[14px] text-right`}
+      >
+        NOTE-IT
+      </Text>
+      <Text
+        style={tailwind` left-[146px]  text-[#7D91FA] top-[379px] font-normal text-[24px] text-center `}
+      >
+        Stay Centered
+      </Text>
 
-      <View style={tailwind``}>
-        <Text style={tailwind``}>Login in</Text>
+      <View style={tailwind`flex flex-col gap-4`}>
         {error && <Text style={styles.error}>{error}</Text>}
+        <Text
+          style={tailwind`left-[190px] top-[361px] font-normal text-[14px]`}
+        >
+          Email
+        </Text>
 
         <TextInput
           value={email}
@@ -53,8 +65,13 @@ export default function Login({ setScreen }) {
           placeholder='Enter email address'
           autoCapitalize='none'
           placeholderTextColor='#aaa'
-          style={styles.input}
+          style={tailwind`bg-[#FFFFFF] shadow-xl pl-2 rounded-[7px] w-[317px] h-[40px]`}
         />
+        <Text
+          style={tailwind` left-[190px] top-[361px] font-normal text-[14px] `}
+        >
+          Password
+        </Text>
         <TextInput
           value={password}
           onChangeText={setPassword}
@@ -62,7 +79,7 @@ export default function Login({ setScreen }) {
           placeholder='Enter password'
           autoCapitalize='none'
           placeholderTextColor='#aaa'
-          style={styles.input}
+          style={tailwind`bg-[#FFFFFF] shadow-xl pl-2 rounded-[7px] w-[317px] h-[40px]`}
         />
         <Button
           title='Login'
